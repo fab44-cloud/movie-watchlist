@@ -34,3 +34,18 @@ function getMovieData() {
             displayMovies(data.Search)
         })
 }
+
+function fetchMovieDetails(imdbID) {
+    const detailsUrl = `http://www.omdbapi.com/?apikey=e08693bc&i=${imdbID}`
+
+    fetch(detailsUrl) 
+        .then(res => res.json())
+        .then(movieDetails => {
+            console.log(movieDetails)
+            if (movieDetails.response === "True") {
+                displayMovies(movieDetails)
+            }
+        })
+}
+
+fetchMovieDetails("tt0083658")
