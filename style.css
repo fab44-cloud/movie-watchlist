@@ -15,7 +15,7 @@ body {
 /* FLEX CONTAINERS */
 .heading-container {
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("images/movie-frames.png");
-    height: 25vh;
+    min-height: 25vh;
     width: 100%;
     background-position: 0 25%;
     background-size: cover;
@@ -39,7 +39,7 @@ body {
 
 main {
     background-color: #121212;
-    height: 75vh;
+    min-height: 75vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -49,7 +49,12 @@ main {
 .movie-container {
     color: #2E2E2F;
     text-align: center;
-} 
+}
+
+.movie-container img {
+    height: 150px;
+    width: auto;
+}
 
 .main-title {
     font-weight: 700;
