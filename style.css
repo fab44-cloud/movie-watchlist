@@ -33,13 +33,55 @@ body {
 
 .hero-watchlist {
     font-weight: 700;
-    font-size: 1.4rem;
+    font-size: 1rem;
 }
 
 main {
     background-color: #121212;
+    height: 75vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .movie-container {
     color: #2E2E2F;
+    text-align: center;
+} 
+
+.main-title {
+    font-weight: 700;
+    font-size: 1.4rem;
+}
+
+input {
+    /* border: 1px solid red; */
+    color: #A5A5A5;
+    font-size: 1.2rem;
+    background-color: #2E2E2F;
+    border-style: none;
+    padding: 0.5em;
+}
+
+.search-bar {
+    /* border: 1px solid blue; */
+    background-color: #2E2E2F;
+    margin: 0 auto;
+    width: 60%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 6px;
+    padding-left: 0.5em;
+}
+
+.search-btn {
+    padding: 1em 1.5em;
+    background-color: #4B4B4B;
+    color: #FFFFFF;
+    cursor: pointer;
+    border-style: none;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
 }
