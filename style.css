@@ -57,7 +57,6 @@ main {
 }
 
 input {
-    /* border: 1px solid red; */
     color: #A5A5A5;
     font-size: 1.2rem;
     background-color: #2E2E2F;
@@ -66,7 +65,6 @@ input {
 }
 
 .search-bar {
-    /* border: 1px solid blue; */
     background-color: #2E2E2F;
     display: flex;
     justify-content: space-between;
@@ -74,7 +72,6 @@ input {
     padding-left: 0.5em;
     position: absolute;
     margin-top: -1.25em;
-    width: 35%;
     left: 50%;
     transform: translateX(-50%);
 }
