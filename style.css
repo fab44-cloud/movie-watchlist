@@ -72,6 +72,11 @@ header a {
     max-width: 800px;
 }
 
+.fa-magnifying-glass {
+    padding-left: 1em;
+    padding-right: 2em;
+}
+
 input {
     color: #A5A5A5;
     font-size: 1.2rem;
@@ -82,7 +87,7 @@ input {
 }
 
 .search-btn {
-    padding: 1em 1.5em;
+    padding: 1em 2.5em;
     background-color: #4B4B4B;
     color: var(--text-color);
     cursor: pointer;
@@ -112,7 +117,7 @@ main {
     justify-content: center;
     align-items: center;
     gap: 30px;
-    margin-top: 3em;
+    margin: 3em;
     color: #2E2E2F;
     max-width: 800px;
 }
@@ -121,11 +126,15 @@ main {
  .movie-card {
     display: flex;
     gap: 20px;
-    border-bottom: 1px solid red;
+    border-bottom: 1px solid #4B4B4B;
     width: 100%;
 } 
 
 .movie-container img {
     height: 150px;
     width: auto; 
+}
+
+.movie-title {
+    color: var(--text-color);
 }
