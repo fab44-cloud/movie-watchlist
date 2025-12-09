@@ -18,6 +18,22 @@ body {
     position: relative;
 }
 
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+p {
+  text-wrap: pretty;
+}
+h1, h2, h3, h4, h5, h6 {
+  text-wrap: balance;
+}
+
 /* --- Header & Search Bar Styling --- */
 header {
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("images/movie-frames.png");
@@ -32,41 +48,28 @@ header {
     align-items: center;
 }
 
+header h1 {
+    font-weight: 800;
+    font-size: 2.7rem;
+}
+
 header a {
     color: var(--text-color);
     text-decoration: none;
     font-weight: 500;
 }
 
-/* TYPOGRAPHY */
-.hero-title {
-    font-weight: 800;
-    font-size: 2.7rem;
-}
-
-.hero-watchlist {
-    font-weight: 700;
-    font-size: 1rem;
-}
-
-main {
-    background-color: #121212;
-    min-height: 75vh;
+.search-bar {
+    background-color: #2E2E2F;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
-}
-
-.movie-container img {
-    display: block;
-    height: 150px;
-    width: auto;
-}
-
-.main-title {
-    font-weight: 700;
-    font-size: 1.4rem;
+    border-radius: 6px;
+    position: absolute;
+    margin-top: -1.25em;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    max-width: 800px;
 }
 
 input {
@@ -75,18 +78,7 @@ input {
     background-color: #2E2E2F;
     border-style: none;
     padding: 0.5em;
-}
-
-.search-bar {
-    background-color: #2E2E2F;
-    display: flex;
-    justify-content: space-between;
-    border-radius: 6px;
-    padding-left: 0.5em;
-    position: absolute;
-    margin-top: -1.25em;
-    left: 50%;
-    transform: translateX(-50%);
+    flex-grow: 1;
 }
 
 .search-btn {
@@ -99,17 +91,41 @@ input {
     border-bottom-right-radius: 6px;
 }
 
+main {
+    background-color: #121212;
+    min-height: 75vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-title {
+    font-weight: 700;
+    font-size: 1.4rem;
+}
+
 /* --- Movie List Container --- */
 .movie-container {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     gap: 30px;
-    margin-top: 20px;
+    margin-top: 3em;
     color: #2E2E2F;
+    max-width: 800px;
 }
 
+/* --- Individual Movie Card Styling --- */
  .movie-card {
     display: flex;
     gap: 20px;
     border-bottom: 1px solid red;
+    width: 100%;
 } 
+
+.movie-container img {
+    height: 150px;
+    width: auto; 
+}
