@@ -1,26 +1,32 @@
+:root {
+    --text-color: #FFFFFF;
+    --font-stack: "Inter", sans-serif;
+}
+
 *, *::before, *::after {
     box-sizing: border-box;
 }
 
 * {
     margin: 0;
+    padding: 0;
 }
 
 body {
     line-height: 1.5;
-    font-family: "Inter", sans-serif;
+    font-family: var(--font-stack);
     position: relative;
 }
 
 /* FLEX CONTAINERS */
-.heading-container {
+header {
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("images/movie-frames.png");
     min-height: 25vh;
     width: 100%;
     background-position: 0 25%;
     background-size: cover;
     background-repeat: no-repeat;
-    color: #FFFFFF;
+    color: var(--text-color);
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -47,11 +53,15 @@ main {
 }
 
 .movie-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-top: 20px;
     color: #2E2E2F;
-    text-align: center;
 }
 
 .movie-container img {
+    display: block;
     height: 150px;
     width: auto;
 }
@@ -84,9 +94,15 @@ input {
 .search-btn {
     padding: 1em 1.5em;
     background-color: #4B4B4B;
-    color: #FFFFFF;
+    color: var(--text-color);
     cursor: pointer;
     border-style: none;
     border-top-right-radius: 6px;
     border-bottom-right-radius: 6px;
 }
+
+ .movie-card {
+    display: flex;
+    gap: 20px;
+    border-bottom: 1px solid red;
+} 
