@@ -4,14 +4,17 @@ const movieContainer = document.querySelector(".movie-container")
 
 searchBtn.addEventListener("click", getMovieData)
 
-function displayMovies(movie) {
+function appendMovieCard(movieData) {
     const movieDiv = document.createElement("div")
     
     movieDiv.innerHTML = `
-        <img src="${movie.Poster}" />
+        <img src="${movieData.Poster}" />
         <div>
-            <h3>${movie.Title}</h3>
-            <p>${movie.Runtime}<p>
+            <h3>${movieData.Title}</h3>
+            <p>${movieData.Runtime}<p>
+            <p>${movieData.Genre}<p>
+            <p>${movieData.Plot}<p>
+            <hr/>
         </div>
     `
 
@@ -44,7 +47,7 @@ function fetchMovieDetails(imdbID) {
         .then(res => res.json())
         .then(movieDetails => {
             if (movieDetails.Response === "True") {
-                displayMovies(movieDetails)
+                appendMovieCard(movieDetails)
             }
         })
 }
