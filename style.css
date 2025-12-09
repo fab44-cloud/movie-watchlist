@@ -73,8 +73,9 @@ header a {
 }
 
 .fa-magnifying-glass {
+    color: #9ca3af;
     padding-left: 1em;
-    padding-right: 2em;
+    padding-right: 1.5em;
 }
 
 input {
@@ -135,6 +136,16 @@ main {
     width: auto; 
 }
 
-.movie-title {
+.card-row-1 {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+}
+
+.movie-title, .rating {
     color: var(--text-color);
+}
+
+.fa-star {
+    color: #FEC654;
 }
