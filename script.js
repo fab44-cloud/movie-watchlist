@@ -11,7 +11,11 @@ function appendMovieCard(movieData) {
     movieDiv.innerHTML = `
         <img src="${movieData.Poster}" alt="${movieData.title}" />
         <div>
-            <h3>${movieData.Title}</h3>
+            <div class="card-row-1">
+                <h3 class="movie-title">${movieData.Title}</h3>
+                <i class="fa-solid fa-star"></i>
+                <span class="rating">${movieData.imdbRating}</span>
+            </div>
             <p>${movieData.Runtime}<p>
             <p>${movieData.Genre}<p>
             <p>${movieData.Plot}<p>
@@ -46,6 +50,7 @@ function fetchMovieDetails(imdbID) {
     fetch(detailsUrl) 
         .then(res => res.json())
         .then(movieDetails => {
+            console.log(movieDetails)
             if (movieDetails.Response === "True") {
                 appendMovieCard(movieDetails)
             }
