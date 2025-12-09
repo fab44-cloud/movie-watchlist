@@ -6,15 +6,15 @@ searchBtn.addEventListener("click", getMovieData)
 
 function appendMovieCard(movieData) {
     const movieDiv = document.createElement("div")
+    movieDiv.classList.add("movie-card")
     
     movieDiv.innerHTML = `
-        <img src="${movieData.Poster}" />
+        <img src="${movieData.Poster}" alt="${movieData.title}" />
         <div>
             <h3>${movieData.Title}</h3>
             <p>${movieData.Runtime}<p>
             <p>${movieData.Genre}<p>
             <p>${movieData.Plot}<p>
-            <hr/>
         </div>
     `
 
