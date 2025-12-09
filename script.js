@@ -21,7 +21,6 @@ function displayMovies(movie) {
 function getMovieData() {
     const movieTitle = input.value.trim()
     const searchUrl = `http://www.omdbapi.com/?apikey=e08693bc&s=${movieTitle}`
-    console.log("Fetching url", searchUrl)
     movieContainer.innerHTML = ""
 
     fetch(searchUrl)
@@ -29,14 +28,11 @@ function getMovieData() {
         .then(data => {
             if (data.Response === "True" && data.Search) {
                 data.Search.forEach(movieSummary => {
-                    console.log(movieSummary.imdbID)
                     fetchMovieDetails(movieSummary.imdbID)
                 })
             } else {
                 movieContainer.textContent = "Unable to find what you're looking for. Please try another search."
             }
-            console.log(data)
-            // displayMovies(data.Search)
         })
         .catch(error => console.error("Search fetch error", error))
 }
@@ -47,9 +43,7 @@ function fetchMovieDetails(imdbID) {
     fetch(detailsUrl) 
         .then(res => res.json())
         .then(movieDetails => {
-            console.log(movieDetails)
             if (movieDetails.Response === "True") {
-                console.log(movieDetails)
                 displayMovies(movieDetails)
             }
         })
