@@ -11,14 +11,20 @@ function appendMovieCard(movieData) {
     movieDiv.innerHTML = `
         <img src="${movieData.Poster}" alt="${movieData.title}" />
         <div>
-            <div class="card-row-1">
+            <div class="card-row">
                 <h3 class="movie-title">${movieData.Title}</h3>
                 <i class="fa-solid fa-star"></i>
-                <span class="rating">${movieData.imdbRating}</span>
+                <span class="movie-rating">${movieData.imdbRating}</span>
             </div>
-            <p>${movieData.Runtime}<p>
-            <p>${movieData.Genre}<p>
-            <p>${movieData.Plot}<p>
+            <div class="card-row">
+                <p class="movie-runtime">${movieData.Runtime}</p>
+                <p class="movie-genre">${movieData.Genre}</p>
+                <a class="movie-watchlist">
+                    <i class="fa-solid fa-circle-plus"></i>
+                    <span>My Watchlist</span>
+                </a>
+            </div>
+            <p class="movie-plot">${movieData.Plot}</p>
         </div>
     `
 
