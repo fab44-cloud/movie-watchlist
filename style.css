@@ -1,5 +1,7 @@
 :root {
     --text-color: #FFFFFF;
+    --main-bg-color: #121212;
+    --alt-text-color: #A5A5A5;
     --font-stack: "Inter", sans-serif;
 }
 
@@ -79,7 +81,7 @@ header a {
 }
 
 input {
-    color: #A5A5A5;
+    color: var(--alt-text-color);
     font-size: 1.2rem;
     background-color: #2E2E2F;
     border-style: none;
@@ -98,7 +100,7 @@ input {
 }
 
 main {
-    background-color: #121212;
+    background-color: var(--main-bg-color);
     min-height: 75vh;
     display: flex;
     flex-direction: column;
@@ -134,18 +136,31 @@ main {
 .movie-container img {
     height: 150px;
     width: auto; 
+    padding-bottom: 1em;
 }
 
-.card-row-1 {
+.card-row {
     display: flex;
     align-items: center;
     gap: 0.5em;
 }
 
-.movie-title, .rating {
+.movie-title, 
+.movie-rating,
+.movie-runtime,
+.movie-genre,
+.movie-watchlist {
     color: var(--text-color);
 }
 
 .fa-star {
     color: #FEC654;
+}
+
+.movie-watchlist {
+    cursor: pointer;
+}
+
+.movie-plot {
+    color: var(--alt-text-color);
 }
