@@ -3,6 +3,13 @@ const searchBtn = document.querySelector(".search-btn")
 const movieContainer = document.querySelector(".movie-container")
 
 searchBtn.addEventListener("click", getMovieData)
+input.addEventListener("keypress", function(e) {
+    if (e.key === "Enter") {
+        e.preventDefault()
+        console.log("Key button is pressed!")
+        getMovieData()
+    }
+})
 
 function appendMovieCard(movieData) {
     const movieDiv = document.createElement("div")
