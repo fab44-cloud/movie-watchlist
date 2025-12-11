@@ -1,6 +1,7 @@
 const input = document.querySelector(".movie-input")
 const searchBtn = document.querySelector(".search-btn")
 const movieContainer = document.querySelector(".movie-container")
+let movieDataCache = {}
 
 searchBtn.addEventListener("click", getMovieData)
 
@@ -16,18 +17,25 @@ movieContainer.addEventListener("click", function(e) {
     const watchlistBtn = e.target.closest(".movie-watchlist")
 
     if (watchlistBtn) {
-        console.log("div clicked!")
 
         const movieCard = watchlistBtn.closest(".movie-card")
         console.log(movieCard)
-        const movieTitle = document.querySelector(".movie-title").textContent
-        console.log("Saving to local storage:", movieTitle)
+        
+        const imdbID = movieCard.dataset.imdbid
+        console.log(imdbID)
+
+        const movieDataToSave = movieDataCache[imdbID]
+        console.log(movieDataToSave)
+
+        saveMovieToLocalStorage(movieDataToSave)
     }
 })
 
 function appendMovieCard(movieData) {
     const movieDiv = document.createElement("div")
     movieDiv.classList.add("movie-card")
+
+    movieDiv.dataset.imdbid = movieData.imdbID
     
     movieDiv.innerHTML = `
         <img src="${movieData.Poster}" alt="${movieData.Title}" />
@@ -78,6 +86,7 @@ function fetchMovieDetails(imdbID) {
         .then(res => res.json())
         .then(movieDetails => {
             if (movieDetails.Response === "True") {
+                movieDataCache[imdbID] = movieDetails
                 appendMovieCard(movieDetails)
             }
         })
