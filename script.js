@@ -17,6 +17,11 @@ movieContainer.addEventListener("click", function(e) {
 
     if (watchlistBtn) {
         console.log("div clicked!")
+
+        const movieCard = watchlistBtn.closest(".movie-card")
+        console.log(movieCard)
+        const movieTitle = document.querySelector(".movie-title").textContent
+        console.log("Saving to local storage:", movieTitle)
     }
 })
 
