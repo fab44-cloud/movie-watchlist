@@ -3,12 +3,26 @@ const searchBtn = document.querySelector(".search-btn")
 const movieContainer = document.querySelector(".movie-container")
 let movieDataCache = {}
 
+function saveMovieToLocalStorage(movieObject) {
+    const existingWatchlist = JSON.parse(localStorage.getItem("movieWatchlist")) || []
+
+    const isAlreadyinList = existingWatchlist.some(movie => movie.imdbID === movieObject.imdbID)
+
+    if (!isAlreadyinList) {
+        existingWatchlist.push(movieObject)
+        console.log(existingWatchlist)
+
+        localStorage.setItem("movieWatchlist", JSON.stringify(existingWatchlist))
+
+        console.log(`Saved ${movieObject.Title} to watchlist.`)
+    }
+}
+
 searchBtn.addEventListener("click", getMovieData)
 
 input.addEventListener("keypress", function(e) {
     if (e.key === "Enter") {
         e.preventDefault()
-        console.log("Key button is pressed!")
         getMovieData()
     }
 })
@@ -19,13 +33,10 @@ movieContainer.addEventListener("click", function(e) {
     if (watchlistBtn) {
 
         const movieCard = watchlistBtn.closest(".movie-card")
-        console.log(movieCard)
         
         const imdbID = movieCard.dataset.imdbid
-        console.log(imdbID)
 
         const movieDataToSave = movieDataCache[imdbID]
-        console.log(movieDataToSave)
 
         saveMovieToLocalStorage(movieDataToSave)
     }
