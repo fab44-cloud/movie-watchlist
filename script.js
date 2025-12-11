@@ -3,6 +3,7 @@ const searchBtn = document.querySelector(".search-btn")
 const movieContainer = document.querySelector(".movie-container")
 
 searchBtn.addEventListener("click", getMovieData)
+
 input.addEventListener("keypress", function(e) {
     if (e.key === "Enter") {
         e.preventDefault()
@@ -11,12 +12,20 @@ input.addEventListener("keypress", function(e) {
     }
 })
 
+movieContainer.addEventListener("click", function(e) {
+    const watchlistBtn = e.target.closest(".movie-watchlist")
+
+    if (watchlistBtn) {
+        console.log("div clicked!")
+    }
+})
+
 function appendMovieCard(movieData) {
     const movieDiv = document.createElement("div")
     movieDiv.classList.add("movie-card")
     
     movieDiv.innerHTML = `
-        <img src="${movieData.Poster}" alt="${movieData.title}" />
+        <img src="${movieData.Poster}" alt="${movieData.Title}" />
         <div>
             <div class="card-row">
                 <h3 class="movie-title">${movieData.Title}</h3>
@@ -26,10 +35,10 @@ function appendMovieCard(movieData) {
             <div class="card-row">
                 <p class="movie-runtime">${movieData.Runtime}</p>
                 <p class="movie-genre">${movieData.Genre}</p>
-                <a class="movie-watchlist">
+                <div class="movie-watchlist">
                     <i class="fa-solid fa-circle-plus"></i>
                     <span>My Watchlist</span>
-                </a>
+                </div>
             </div>
             <p class="movie-plot">${movieData.Plot}</p>
         </div>
@@ -63,7 +72,6 @@ function fetchMovieDetails(imdbID) {
     fetch(detailsUrl) 
         .then(res => res.json())
         .then(movieDetails => {
-            console.log(movieDetails)
             if (movieDetails.Response === "True") {
                 appendMovieCard(movieDetails)
             }
