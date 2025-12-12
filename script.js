@@ -9,7 +9,7 @@ function saveMovieToLocalStorage(movieObject) {
     const isAlreadyinList = existingWatchlist.some(movie => movie.imdbID === movieObject.imdbID)
 
     if (!isAlreadyinList) {
-        existingWatchlist.push(movieObject)
+        existingWatchlist.unshift(movieObject)
         console.log(existingWatchlist)
 
         localStorage.setItem("movieWatchlist", JSON.stringify(existingWatchlist))
