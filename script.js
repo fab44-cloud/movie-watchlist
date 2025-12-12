@@ -32,13 +32,9 @@ movieContainer.addEventListener("click", function(e) {
     const watchlistBtn = e.target.closest(".movie-watchlist")
 
     if (watchlistBtn) {
-
         const movieCard = watchlistBtn.closest(".movie-card")
-        
         const imdbID = movieCard.dataset.imdbid
-
         const movieDataToSave = movieDataCache[imdbID]
-
         saveMovieToLocalStorage(movieDataToSave)
     }
 })
@@ -69,7 +65,7 @@ function appendMovieCard(movieData) {
         </div>
     `
 
-        movieContainer.appendChild(movieDiv)
+    movieContainer.appendChild(movieDiv)
 }
 
 function getMovieData() {
