@@ -41,12 +41,23 @@ function displayWatchlistItem(movieData) {
     movieContainer.appendChild(movieDiv)
 }
 
+function removeMovieFromLocalStorage(imdbID) {
+    const existingWatchlist = JSON.parse(localStorage.getItem("movieWatchlist")) || []
+    console.log("My existing watchlist:", existingWatchlist)
+
+    const updatedWatchlist = existingWatchlist.filter(movieData => movieData.imdbID !== imdbID)
+    console.log("My updated watchlist:", updatedWatchlist)
+
+    localStorage.setItem("movieWatchlist", JSON.stringify(updatedWatchlist))
+    console.log(`Removed ${imdbID} from watchlist.`)
+}
+
 movieContainer.addEventListener("click", function(e) {
     const removeBtn = e.target.closest(".remove-btn")
 
     if (removeBtn) {
         const imdbIDToRemove = removeBtn.dataset.imdbid
-        // removeMovieFromLocalStorage(imdbIDToRemove)
+        removeMovieFromLocalStorage(imdbIDToRemove)
         removeBtn.closest(".movie-card").remove()
     }
 })
