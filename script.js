@@ -1,6 +1,7 @@
 const input = document.querySelector(".movie-input")
 const searchBtn = document.querySelector(".search-btn")
 const movieContainer = document.querySelector(".movie-container")
+const mainTextContainer = document.querySelector(".main-text-container")
 let movieDataCache = {}
 
 function saveMovieToLocalStorage(movieObject) {
@@ -75,6 +76,7 @@ function getMovieData() {
     const movieTitle = input.value.trim()
     const searchUrl = `http://www.omdbapi.com/?apikey=e08693bc&s=${movieTitle}`
     movieContainer.innerHTML = ""
+    mainTextContainer.textContent = ""
 
     fetch(searchUrl)
         .then(res => res.json())
@@ -84,7 +86,7 @@ function getMovieData() {
                     fetchMovieDetails(movieSummary.imdbID)
                 })
             } else {
-                movieContainer.textContent = "Unable to find what you're looking for. Please try another search."
+                mainTextContainer.textContent = "Unable to find what you're looking for. Please try another search."
             }
         })
         .catch(error => console.error("Search fetch error", error))
