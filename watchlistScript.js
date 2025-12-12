@@ -1,3 +1,5 @@
+const movieContainer = document.querySelector(".movie-container")
+
 document.addEventListener("DOMContentLoaded", () => {
     const storedWatchlistString = localStorage.getItem("movieWatchlist")
 
@@ -13,7 +15,6 @@ document.addEventListener("DOMContentLoaded", () => {
 })
 
 function displayWatchlistItem(movieData) {
-    const movieContainer = document.querySelector(".movie-container")
     const movieDiv = document.createElement("div")
     movieDiv.classList.add("movie-card")
     
@@ -28,7 +29,7 @@ function displayWatchlistItem(movieData) {
             <div class="card-row">
                 <p class="movie-runtime">${movieData.Runtime}</p>
                 <p class="movie-genre">${movieData.Genre}</p>
-                <div class="movie-watchlist" data-imdbid="${movieData.imdbID}">
+                <div class="movie-watchlist remove-btn" data-imdbid="${movieData.imdbID}">
                     <i class="fa-solid fa-circle-minus"></i>
                     <span>Remove</span>
                 </div>
@@ -39,3 +40,13 @@ function displayWatchlistItem(movieData) {
 
     movieContainer.appendChild(movieDiv)
 }
+
+movieContainer.addEventListener("click", function(e) {
+    const removeBtn = e.target.closest(".remove-btn")
+
+    if (removeBtn) {
+        const imdbIDToRemove = removeBtn.dataset.imdbid
+        // removeMovieFromLocalStorage(imdbIDToRemove)
+        removeBtn.closest(".movie-card").remove()
+    }
+})
