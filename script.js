@@ -61,7 +61,7 @@ function appendMovieCard(movieData) {
                 <p class="movie-genre">${movieData.Genre}</p>
                 <div class="movie-watchlist">
                     <i class="fa-solid fa-circle-plus"></i>
-                    <span>My Watchlist</span>
+                    <span>Watchlist</span>
                 </div>
             </div>
             <p class="movie-plot">${movieData.Plot}</p>
