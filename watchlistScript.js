@@ -28,8 +28,8 @@ function displayWatchlistItem(movieData) {
             <div class="card-row">
                 <p class="movie-runtime">${movieData.Runtime}</p>
                 <p class="movie-genre">${movieData.Genre}</p>
-                <div class="movie-watchlist">
-                    <i class="fa-solid fa-circle-plus"></i>
+                <div class="movie-watchlist" data-imdbid="${movieData.imdbID}">
+                    <i class="fa-solid fa-circle-minus"></i>
                     <span>Remove</span>
                 </div>
             </div>
