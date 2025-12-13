@@ -44,13 +44,10 @@ function displayWatchlistItem(movieData) {
 
 function removeMovieFromLocalStorage(imdbID) {
     const existingWatchlist = JSON.parse(localStorage.getItem("movieWatchlist")) || []
-    console.log("My existing watchlist:", existingWatchlist)
 
     const updatedWatchlist = existingWatchlist.filter(movieData => movieData.imdbID !== imdbID)
-    console.log("My updated watchlist:", updatedWatchlist)
 
     localStorage.setItem("movieWatchlist", JSON.stringify(updatedWatchlist))
-    console.log(`Removed ${imdbID} from watchlist.`)
 
     if (updatedWatchlist.length === 0) {
         displayEmptyMessage()

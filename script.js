@@ -76,11 +76,8 @@ function saveMovieToLocalStorage(movieObject) {
 
     if (!isAlreadyinList) {
         existingWatchlist.unshift(movieObject)
-        console.log(existingWatchlist)
 
         localStorage.setItem("movieWatchlist", JSON.stringify(existingWatchlist))
-
-        console.log(`Saved ${movieObject.Title} to watchlist.`)
     }
 }
 
