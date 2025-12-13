@@ -4,41 +4,7 @@ const movieContainer = document.querySelector(".movie-container")
 const mainTextContainer = document.querySelector(".main-text-container")
 let movieDataCache = {}
 
-function saveMovieToLocalStorage(movieObject) {
-    const existingWatchlist = JSON.parse(localStorage.getItem("movieWatchlist")) || []
-
-    const isAlreadyinList = existingWatchlist.some(movie => movie.imdbID === movieObject.imdbID)
-
-    if (!isAlreadyinList) {
-        existingWatchlist.unshift(movieObject)
-        console.log(existingWatchlist)
-
-        localStorage.setItem("movieWatchlist", JSON.stringify(existingWatchlist))
-
-        console.log(`Saved ${movieObject.Title} to watchlist.`)
-    }
-}
-
-searchBtn.addEventListener("click", getMovieData)
-
-input.addEventListener("keypress", function(e) {
-    if (e.key === "Enter") {
-        e.preventDefault()
-        getMovieData()
-    }
-})
-
-movieContainer.addEventListener("click", function(e) {
-    const watchlistBtn = e.target.closest(".movie-watchlist")
-
-    if (watchlistBtn) {
-        const movieCard = watchlistBtn.closest(".movie-card")
-        const imdbID = movieCard.dataset.imdbid
-        const movieDataToSave = movieDataCache[imdbID]
-        saveMovieToLocalStorage(movieDataToSave)
-    }
-})
-
+// Functions
 function appendMovieCard(movieData) {
     const movieDiv = document.createElement("div")
     movieDiv.classList.add("movie-card")
@@ -70,6 +36,19 @@ function appendMovieCard(movieData) {
     movieContainer.appendChild(movieDiv)
 }
 
+function fetchMovieDetails(imdbID) {
+    const detailsUrl = `http://www.omdbapi.com/?apikey=e08693bc&i=${imdbID}`
+
+    fetch(detailsUrl) 
+        .then(res => res.json())
+        .then(movieDetails => {
+            if (movieDetails.Response === "True") {
+                movieDataCache[imdbID] = movieDetails
+                appendMovieCard(movieDetails)
+            }
+        })
+}
+
 function getMovieData() {
     const movieTitle = input.value.trim()
     const searchUrl = `http://www.omdbapi.com/?apikey=e08693bc&s=${movieTitle}`
@@ -90,15 +69,38 @@ function getMovieData() {
         .catch(error => console.error("Search fetch error", error))
 }
 
-function fetchMovieDetails(imdbID) {
-    const detailsUrl = `http://www.omdbapi.com/?apikey=e08693bc&i=${imdbID}`
+function saveMovieToLocalStorage(movieObject) {
+    const existingWatchlist = JSON.parse(localStorage.getItem("movieWatchlist")) || []
 
-    fetch(detailsUrl) 
-        .then(res => res.json())
-        .then(movieDetails => {
-            if (movieDetails.Response === "True") {
-                movieDataCache[imdbID] = movieDetails
-                appendMovieCard(movieDetails)
-            }
-        })
+    const isAlreadyinList = existingWatchlist.some(movie => movie.imdbID === movieObject.imdbID)
+
+    if (!isAlreadyinList) {
+        existingWatchlist.unshift(movieObject)
+        console.log(existingWatchlist)
+
+        localStorage.setItem("movieWatchlist", JSON.stringify(existingWatchlist))
+
+        console.log(`Saved ${movieObject.Title} to watchlist.`)
+    }
 }
+
+// --- Event Listeners ---
+searchBtn.addEventListener("click", getMovieData)
+
+input.addEventListener("keypress", function(e) {
+    if (e.key === "Enter") {
+        e.preventDefault()
+        getMovieData()
+    }
+})
+
+movieContainer.addEventListener("click", function(e) {
+    const watchlistBtn = e.target.closest(".movie-watchlist")
+
+    if (watchlistBtn) {
+        const movieCard = watchlistBtn.closest(".movie-card")
+        const imdbID = movieCard.dataset.imdbid
+        const movieDataToSave = movieDataCache[imdbID]
+        saveMovieToLocalStorage(movieDataToSave)
+    }
+})
