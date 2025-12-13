@@ -43,6 +43,8 @@ function appendMovieCard(movieData) {
     const movieDiv = document.createElement("div")
     movieDiv.classList.add("movie-card")
 
+    mainTextContainer.style.paddingTop = "0"
+
     movieDiv.dataset.imdbid = movieData.imdbID
     
     movieDiv.innerHTML = `
