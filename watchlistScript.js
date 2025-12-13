@@ -1,4 +1,5 @@
 const movieContainer = document.querySelector(".movie-container")
+const mainTextContainer = document.querySelector(".main-text-container")
 
 document.addEventListener("DOMContentLoaded", () => {
     const storedWatchlistString = localStorage.getItem("movieWatchlist")
@@ -10,7 +11,11 @@ document.addEventListener("DOMContentLoaded", () => {
             watchlistMovies.forEach(movieData => {
                 displayWatchlistItem(movieData)
             })
+        } else {
+            mainTextContainer.textContent = "Your watchlist is looking a little empty..."
         } 
+    } else {
+        mainTextContainer.textContent = "Your watchlist is looking a little empty..."
     }
 })
 
