@@ -1,27 +1,34 @@
 const movieContainer = document.querySelector(".movie-container")
 const mainTextContainer = document.querySelector(".main-text-container")
 
-document.addEventListener("DOMContentLoaded", () => {
+function displayEmptyMessage() {
+    movieContainer.innerHTML = ""
+    mainTextContainer.textContent = "Your watchlist is looking a little empty..."
+}
+
+function loadAndDisplayWatchlist() {
     const storedWatchlistString = localStorage.getItem("movieWatchlist")
-
-    if (storedWatchlistString) {
-        const watchlistMovies = JSON.parse(storedWatchlistString)
-
-        if (watchlistMovies.length > 0) {
-            watchlistMovies.forEach(movieData => {
-                displayWatchlistItem(movieData)
-            })
-        } else {
-            mainTextContainer.textContent = "Your watchlist is looking a little empty..."
-        } 
+    const watchlistMovies = storedWatchlistString ? JSON.parse(storedWatchlistString) : []
+    
+    if (watchlistMovies.length > 0) {
+        mainTextContainer.textContent = ""
+        watchlistMovies.forEach(movieData => {
+            displayWatchlistItem(movieData)
+        })
     } else {
-        mainTextContainer.textContent = "Your watchlist is looking a little empty..."
+        displayEmptyMessage()
     }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    loadAndDisplayWatchlist()
 })
 
 function displayWatchlistItem(movieData) {
     const movieDiv = document.createElement("div")
     movieDiv.classList.add("movie-card")
+
+    movieDiv.dataset.imdbid = movieData.imdbID
     
     movieDiv.innerHTML = `
         <img src="${movieData.Poster}" alt="${movieData.Title}" />
@@ -55,6 +62,10 @@ function removeMovieFromLocalStorage(imdbID) {
 
     localStorage.setItem("movieWatchlist", JSON.stringify(updatedWatchlist))
     console.log(`Removed ${imdbID} from watchlist.`)
+
+    if (updatedWatchlist.length === 0) {
+        displayEmptyMessage()
+    }
 }
 
 movieContainer.addEventListener("click", function(e) {
