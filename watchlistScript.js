@@ -1,6 +1,7 @@
 const movieContainer = document.querySelector(".movie-container")
 const mainTextContainer = document.querySelector(".main-text-container")
 
+// Functions
 function displayEmptyMessage() {
     movieContainer.innerHTML = ""
     mainTextContainer.innerHTML = `
@@ -11,24 +12,6 @@ function displayEmptyMessage() {
         </a>
     `
 }
-
-function loadAndDisplayWatchlist() {
-    const storedWatchlistString = localStorage.getItem("movieWatchlist")
-    const watchlistMovies = storedWatchlistString ? JSON.parse(storedWatchlistString) : []
-    
-    if (watchlistMovies.length > 0) {
-        mainTextContainer.textContent = ""
-        watchlistMovies.forEach(movieData => {
-            displayWatchlistItem(movieData)
-        })
-    } else {
-        displayEmptyMessage()
-    }
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-    loadAndDisplayWatchlist()
-})
 
 function displayWatchlistItem(movieData) {
     const movieDiv = document.createElement("div")
@@ -73,6 +56,25 @@ function removeMovieFromLocalStorage(imdbID) {
         displayEmptyMessage()
     }
 }
+
+function loadAndDisplayWatchlist() {
+    const storedWatchlistString = localStorage.getItem("movieWatchlist")
+    const watchlistMovies = storedWatchlistString ? JSON.parse(storedWatchlistString) : []
+    
+    if (watchlistMovies.length > 0) {
+        mainTextContainer.textContent = ""
+        watchlistMovies.forEach(movieData => {
+            displayWatchlistItem(movieData)
+        })
+    } else {
+        displayEmptyMessage()
+    }
+}
+
+// Event Listeners
+document.addEventListener("DOMContentLoaded", () => {
+    loadAndDisplayWatchlist()
+})
 
 movieContainer.addEventListener("click", function(e) {
     const removeBtn = e.target.closest(".remove-btn")
