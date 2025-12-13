@@ -3,7 +3,13 @@ const mainTextContainer = document.querySelector(".main-text-container")
 
 function displayEmptyMessage() {
     movieContainer.innerHTML = ""
-    mainTextContainer.textContent = "Your watchlist is looking a little empty..."
+    mainTextContainer.innerHTML = `
+        <h2>Your watchlist is looking a little empty...</h2>
+        <a href="index.html" class="add-movies">
+            <i class="fa-solid fa-circle-plus"></i>
+            <span>Let's add some movies!<span>
+        </a>
+    `
 }
 
 function loadAndDisplayWatchlist() {
