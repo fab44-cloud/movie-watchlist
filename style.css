@@ -1,7 +1,7 @@
 :root {
     --text-color: #FFFFFF;
     --main-bg-color: #121212;
-    --alt-text-color: #A5A5A5;
+    --alt-text-color: #5c5959;
     --font-stack: "Inter", sans-serif;
 }
 
@@ -81,7 +81,7 @@ header a {
 }
 
 input {
-    color: var(--alt-text-color);
+    color: #A5A5A5;
     font-size: 1.2rem;
     background-color: #2E2E2F;
     border-style: none;
@@ -105,16 +105,17 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: center; 
+    align-items: center;
 }
 
 .main-text-container {
-    color: #2E2E2F;
+    color: var(--alt-text-color);
     display: flex;
     flex-direction: column;
     align-items: center;
     font-size: 1.4rem;
     font-weight: 700;
+    padding-top: 4em;
 }
 
 /* --- Movie List Container --- */
@@ -166,4 +167,9 @@ main {
 
 .movie-plot {
     color: var(--alt-text-color);
+}
+
+a.add-movies {
+    color: var(--text-color);
+    text-decoration: none;
 }
