@@ -37,7 +37,7 @@ function appendMovieCard(movieData) {
 }
 
 function fetchMovieDetails(imdbID) {
-    const detailsUrl = `http://www.omdbapi.com/?apikey=e08693bc&i=${imdbID}`
+    const detailsUrl = `https://www.omdbapi.com/?apikey=e08693bc&i=${imdbID}`
 
     fetch(detailsUrl) 
         .then(res => res.json())
@@ -51,7 +51,7 @@ function fetchMovieDetails(imdbID) {
 
 function getMovieData() {
     const movieTitle = input.value.trim()
-    const searchUrl = `http://www.omdbapi.com/?apikey=e08693bc&s=${movieTitle}`
+    const searchUrl = `https://www.omdbapi.com/?apikey=e08693bc&s=${movieTitle}`
     movieContainer.innerHTML = ""
     mainTextContainer.textContent = ""
 
